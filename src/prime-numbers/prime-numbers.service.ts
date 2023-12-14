@@ -13,6 +13,21 @@ export class PrimeNumbersService {
     }
 
     public splitRangeOfNumberIntoSmallerSubRange(range: NumberRange): NumberRange[] {
-        return [];
+        if (range.end - range.start < 5000 - 1) {
+            const startAt: number = Math.floor(range.start / 5000) * 5000;
+            return [new NumberRange(startAt, startAt + 5000 - 1)];
+        }
+
+        const subRangeCount: number = Math.ceil((range.end - range.start) / 5000);
+        const startAt: number = Math.floor(range.start / 5000) * 5000;
+
+        let subRanges: NumberRange[] = [];
+
+        for (let subRangeIndex = 0; subRangeIndex < subRangeCount; ++subRangeIndex) {
+            subRanges.push(new NumberRange(startAt + 5000 * subRangeIndex,
+                startAt + 5000 * subRangeIndex + 5000 - 1))
+        }
+
+        return subRanges;
     }
 }

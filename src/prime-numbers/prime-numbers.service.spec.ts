@@ -34,4 +34,28 @@ describe('PrimeNumbersService', () => {
 
     expect(truncatedRange).toEqual(expectedResult);
   })
+
+  it('should split a too large range of numbers into standardised batch', () => {
+    const range: NumberRange = new NumberRange(2000, 23400);
+    const expectedResult: NumberRange[] = [
+      new NumberRange(0, 4999),
+      new NumberRange(5000, 9999),
+      new NumberRange(10000, 14999),
+      new NumberRange(15000, 19999),
+      new NumberRange(20000, 24999)];
+
+    const splitRanges: NumberRange[] = service.splitRangeOfNumberIntoSmallerSubRange(range);
+
+    expect(splitRanges).toEqual(expectedResult);
+  })
+
+  it("should standardize the range without splitting it, as its size is acceptable", () => {
+    const range: NumberRange = new NumberRange(2000, 3000);
+    const expectedResult: NumberRange[] = [
+      new NumberRange(0, 4999)];
+
+    const splitRanges: NumberRange[] = service.splitRangeOfNumberIntoSmallerSubRange(range);
+
+    expect(splitRanges).toEqual(expectedResult);
+  })
 });

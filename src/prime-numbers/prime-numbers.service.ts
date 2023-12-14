@@ -11,4 +11,8 @@ export class PrimeNumbersService {
         }
         return range;
     }
+
+    public splitRangeOfNumberIntoSmallerSubRange(range: NumberRange): NumberRange[] {
+        return [];
+    }
 }

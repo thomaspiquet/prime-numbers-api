@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { PrimeNumbersModule } from './prime-numbers/prime-numbers.module';
 
 @Module({
-  imports: [],
+  imports: [PrimeNumbersModule],
   controllers: [AppController],
   providers: [AppService],
 })
